@@ -1,7 +1,7 @@
 <section class="register-form">
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <input type="text" class="form-control" formControlName="firstname" placeholder="firstname" autocomplete="off">
+        <input type="text" class="form-control" formControlName="firstname" placeholder="Enter Firstname" autocomplete="off">
         <div class="text-danger" *ngIf="registrationForm.get('firstname').invalid && registrationForm.get('firstname').touched">
             <span class="text-danger" *ngIf="registrationForm.get('firstname').errors.required ">
                 firstname is required
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" formControlName="lastname" placeholder="lastname" autocomplete="off">
+      <input type="text" class="form-control" formControlName="lastname" placeholder="Enter Lastname" autocomplete="off">
       <div class="text-danger" *ngIf="registrationForm.get('lastname').invalid && registrationForm.get('lastname').touched">
           <span class="text-danger" *ngIf="registrationForm.get('lastname').errors.required ">
               lastname is required
@@ -29,7 +29,7 @@
       </div>
   </div>
   <div class="form-group">
-    <input type="email" class="form-control" formControlName="email" placeholder="email" autocomplete="off">
+    <input type="email" class="form-control" formControlName="email" placeholder="Enter Email" autocomplete="off">
     <div class="text-danger" *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
         <span class="text-danger" *ngIf="registrationForm.get('email').errors.required ">
             email is required
@@ -40,18 +40,21 @@
     </div>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" formControlName="mobile" placeholder="mobilenumber" autocomplete="off" onlyNumber>
+    <input type="text" class="form-control" (keypress)="keyPress($event)" formControlName="mobile" placeholder="Enter Mobilenumber" autocomplete="off" onlyNumber>
     <div class="text-danger" *ngIf="registrationForm.get('mobile').invalid && registrationForm.get('mobile').touched">
         <span class="text-danger" *ngIf="registrationForm.get('mobile').errors.required ">
             mobile number is required
         </span>
-        <span class="text-danger" *ngIf="registrationForm.get('mobile').errors?.pattern ">
-          please enter 10 digit mobile number
-      </span>
+        <span class="text-danger" *ngIf="registrationForm.get('mobile').errors.pattern ">
+          Invalid mobile number<br>mobile number must start with 9 or 7 or 8
+       </span><br>
+       <span class="text-danger" *ngIf="registrationForm.get('mobile').errors?.minlength ">
+        mobile number atleast 10 numbers
+     </span>
     </div>
   </div>
     <div class="form-group">
-        <input type="password" class="form-control" formControlName="password" placeholder="password" autocomplete="off">
+        <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" autocomplete="off">
         <div class="text-danger" *ngIf="registrationForm.get('password').invalid && registrationForm.get('password').touched">
             <span class="text-danger" *ngIf="registrationForm.get('password').errors.required ">
                 password is required
@@ -59,7 +62,7 @@
         </div>
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" formControlName="confirmpassword" placeholder="confirmpassword" autocomplete="off">
+      <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Enter Confirmpassword" autocomplete="off">
       <div class="text-danger" *ngIf="registrationForm.get('confirmpassword').invalid && registrationForm.get('confirmpassword').touched">
           <span class="text-danger" *ngIf="registrationForm.get('confirmpassword').errors.required ">
               confirmpassword is required

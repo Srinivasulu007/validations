@@ -17,7 +17,7 @@ export class AppComponent {
       firstname:['',[Validators.required,Validators.minLength(3),Validators.maxLength(16)]],
       lastname:['',[Validators.required,Validators.minLength(3),Validators.maxLength(16)]],
       email:['',[Validators.required,Validators.email]],
-      mobile:['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      mobile:['',[Validators.required,Validators.minLength(10),Validators.maxLength(10), Validators.pattern('[7-9]\\d{9}')]],
         password:['',[Validators.required]],
         confirmpassword:['',[Validators.required]],
       },
@@ -25,6 +25,7 @@ export class AppComponent {
         validators: this.passwordMatch('password','confirmpassword')
     });
   }
+
 
   // Validations for matchpassword
   passwordMatch(password:string, matchPassword:string) {
@@ -39,6 +40,14 @@ export class AppComponent {
     }
   }
 
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+  
   onSubmit() {
     this.submitted = true;
     if (this.registrationForm.valid) {
