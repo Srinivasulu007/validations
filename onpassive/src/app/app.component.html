@@ -1,1 +1,76 @@
-<h1>application is working</h1>
+<section class="register-form">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <input type="text" class="form-control" formControlName="firstname" placeholder="firstname" autocomplete="off">
+        <div class="text-danger" *ngIf="registrationForm.get('firstname').invalid && registrationForm.get('firstname').touched">
+            <span class="text-danger" *ngIf="registrationForm.get('firstname').errors.required ">
+                firstname is required
+            </span>
+            <span class="text-danger" *ngIf="registrationForm.get('firstname').errors?.minlength ">
+              firstname is atleast 3 letters
+            </span>
+            <span class="text-danger" *ngIf="registrationForm.get('firstname').errors?.maxlength ">
+              firstname is maximum 16 letters
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="lastname" placeholder="lastname" autocomplete="off">
+      <div class="text-danger" *ngIf="registrationForm.get('lastname').invalid && registrationForm.get('lastname').touched">
+          <span class="text-danger" *ngIf="registrationForm.get('lastname').errors.required ">
+              lastname is required
+          </span>
+          <span class="text-danger" *ngIf="registrationForm.get('lastname').errors?.minlength ">
+            firstname is atleast 3 letters
+          </span>
+          <span class="text-danger" *ngIf="registrationForm.get('lastname').errors?.maxlength ">
+            firstname is maximum 16 letters
+          </span>
+      </div>
+  </div>
+  <div class="form-group">
+    <input type="email" class="form-control" formControlName="email" placeholder="email" autocomplete="off">
+    <div class="text-danger" *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
+        <span class="text-danger" *ngIf="registrationForm.get('email').errors.required ">
+            email is required
+        </span>
+        <span class="text-danger" *ngIf="registrationForm.get('email').errors?.email ">
+          enter valid email
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="mobile" placeholder="mobilenumber" autocomplete="off" onlyNumber>
+    <div class="text-danger" *ngIf="registrationForm.get('mobile').invalid && registrationForm.get('mobile').touched">
+        <span class="text-danger" *ngIf="registrationForm.get('mobile').errors.required ">
+            mobile number is required
+        </span>
+        <span class="text-danger" *ngIf="registrationForm.get('mobile').errors?.pattern ">
+          please enter 10 digit mobile number
+      </span>
+    </div>
+  </div>
+    <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="password" autocomplete="off">
+        <div class="text-danger" *ngIf="registrationForm.get('password').invalid && registrationForm.get('password').touched">
+            <span class="text-danger" *ngIf="registrationForm.get('password').errors.required ">
+                password is required
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" formControlName="confirmpassword" placeholder="confirmpassword" autocomplete="off">
+      <div class="text-danger" *ngIf="registrationForm.get('confirmpassword').invalid && registrationForm.get('confirmpassword').touched">
+          <span class="text-danger" *ngIf="registrationForm.get('confirmpassword').errors.required ">
+              confirmpassword is required
+          </span>
+          <span class="text-danger" *ngIf="registrationForm.get('confirmpassword').errors?.passwordMatch">
+            confirmPassword is mismatch
+        </span>
+      </div>
+  </div>
+    <div class="buttons d-flex justify-content-center text-center">
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!registrationForm.valid">Sign up</button>
+    </div>
+  </form>
+</section>

@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.register-form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+}
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
